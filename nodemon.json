@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "ts,prisma",
+  "ignore": ["src/**/generated/**"],
+  "exec": "concurrently -n 'prisma,graphql' -c 'bgBlue,bgGreen' 'pnpm prisma:generate' 'pnpm start'"
+}
