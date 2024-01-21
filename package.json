@@ -8,11 +8,11 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "node -r ts-node/register src/scripts/generateSchema.js",
+    "generate": "ts-node-esm src/scripts/generateSchema.js",
     "start": "nodemon -w",
-    "live": "concurrently  --handle-input -n 'graphql:generate' 'graphql:server' -c 'bgGreen,bgBlue' 'pnpm generate' 'pnpm start'",
-    "pre:build": "node -r ts-node/register src/scripts/preBuild.js",
-    "post:build": "node -r ts-node/register src/scripts/postBuild.js",
+    "live": "concurrently  -n 'graphql:generate,graphql:server' -c 'bgGreen,bgBlue' 'pnpm generate' --handle-input 'pnpm start'",
+    "pre:build": "ts-node-esm src/scripts/preBuild.js",
+    "post:build": "ts-node-esm src/scripts/postBuild.js",
     "build": "pnpm pre:build; pnpm generate; npx parcel build --no-cache; pnpm post:build"
   },
   "keywords": [],
@@ -24,7 +24,8 @@
     "@graphql-tools/merge": "^9.0.1",
     "@prisma/client": "^5.8.1",
     "dotenv": "^16.3.2",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
     "@parcel/packager-ts": "2.11.0",
@@ -37,7 +38,6 @@
     "prisma": "^5.8.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.3"
   }
 }
