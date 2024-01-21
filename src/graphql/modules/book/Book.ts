@@ -1,6 +1,4 @@
 import { sampleAuthorsData, sampleBooksData } from "../../../data/sample.js";
-import {typeDefs} from "./Book.types.js"
-
 
 const resolvers = {
   Query: {
@@ -24,4 +22,4 @@ const resolvers = {
 }
 
 
-export const bookSchema = {typeDefs, resolvers}
+export const bookSchema = { resolvers }
