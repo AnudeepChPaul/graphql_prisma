@@ -1,15 +1,24 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import { createLogger, getLoglevel, setLoglevel } from "./utils/Logger.js";
+
+const logger = createLogger('app');
+
+if (process.env.LOG_LEVEL) {
+  logger.info(`Setting log level to ${process.env.LOG_LEVEL}.`)
+  setLoglevel(process.env.LOG_LEVEL);
+  logger.info(`Level changed to ${getLoglevel()}`);
+}
+
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone"
 import { readFileSync } from "node:fs";
 import { resolvers } from "./graphql/index.js";
-import { createLogger } from "./utils/Logger.js";
-
-const logger = createLogger('app');
 
 const typeDefs = readFileSync('schema.graphql', 'utf-8');
+
+logger.info(`Looger initialized. Default log level is ${getLoglevel()}`);
 
 export async function startServer() {
   logger.info('Starting server');

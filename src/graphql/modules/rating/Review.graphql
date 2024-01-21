@@ -22,3 +22,4 @@ type BookResponse {
 type Query {
   reviews(bookId: String): [ReviewResponse]!
 }
+

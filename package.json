@@ -8,9 +8,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "ts-node-esm src/scripts/generateSchema.js",
-    "start": "nodemon -w",
-    "live": "concurrently  -n 'graphql:generate,graphql:server' -c 'bgGreen,bgBlue' 'pnpm generate' --handle-input 'pnpm start'",
+    "generate": "nodemon --exec 'ts-node-esm src/scripts/generateSchema.js' --watch 'src/graphql/modules/**/*.graphql' --ext 'graphql'",
+    "start": "nodemon --exec ts-node-esm src/app.ts --watch src --ignore 'node_modules'",
+    "live": "concurrently  -n 'graphql:generate,graphql:server' -c 'bgGreen,bgBlue' 'pnpm generate' 'pnpm start' --handle-input",
     "pre:build": "ts-node-esm src/scripts/preBuild.js",
     "post:build": "ts-node-esm src/scripts/postBuild.js",
     "build": "pnpm pre:build; pnpm generate; npx parcel build --no-cache; pnpm post:build"
