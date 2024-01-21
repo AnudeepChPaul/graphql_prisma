@@ -1,6 +1,6 @@
 {
   "watch": ["src"],
-  "ext": "ts,prisma",
-  "ignore": ["src/**/generated/**"],
-  "exec": "concurrently -n 'prisma,graphql' -c 'bgBlue,bgGreen' 'pnpm prisma:generate' 'pnpm start'"
+  "ext": "ts",
+  "ignore": ["node_modules"],
+  "exec": "nodemon --exec node --loader ts-node/esm src/app.ts"
 }

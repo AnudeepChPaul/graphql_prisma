@@ -1,0 +1,24 @@
+type Review {
+  id: String!
+  bookId: String!
+  rating: Int!
+  reviewer: String!
+  review: String!
+}
+
+type ReviewResponse {
+  id: String!
+  book: BookResponse!
+  rating: Int!
+  reviewer: String!
+  review: String!
+}
+
+type BookResponse {
+  avgRating: Float
+  reviews: [ReviewResponse!]!
+}
+
+type Query {
+  reviews(bookId: String): [ReviewResponse]!
+}

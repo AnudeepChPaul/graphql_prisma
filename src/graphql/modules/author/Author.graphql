@@ -1,0 +1,16 @@
+type Query {
+  authors(id: String): [AuthorResponse]!
+}
+
+type Author {
+  id: String!
+  name: String!
+  books: [String!]!
+}
+
+type AuthorResponse {
+  id: String!
+  name: String!
+  books: [BookResponse!]!
+  bookCount: Int!
+}
