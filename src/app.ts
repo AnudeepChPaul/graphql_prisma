@@ -10,6 +10,15 @@ if (process.env.LOG_LEVEL) {
   setLoglevel(process.env.LOG_LEVEL);
   logger.info(`Level changed to ${getLoglevel()}`);
 }
+declare global {
+    namespace NodeJS {
+        interface ProcessEnv {
+            NODE_ENV: 'development' | 'production' | 'test';
+            APP_SERVER_PORT: number;
+            LOG_LEVEL: 'info' | 'debug' | 'warn' | 'error';
+        }
+    }
+}
 
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone"
