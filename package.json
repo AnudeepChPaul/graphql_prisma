@@ -4,19 +4,19 @@
   "description": "",
   "main": "dist/app.js",
   "types": "dist/app.d.ts",
-  "type": "module",
+  "type": "esmodule",
   "scripts": {
     "check": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "ts-node-esm src/scripts/generateSchema.js",
-    "generate:live": "nodemon --exec 'ts-node-esm src/scripts/generateSchema.js' --watch 'src/graphql/modules/**/*.graphql' --ext 'graphql'",
-    "start": "ts-node-esm src/app.ts",
-    "start:live": "nodemon --exec ts-node-esm src/app.ts --watch src --ignore 'node_modules'",
+    "generate": "ts-node --transpile-only src/scripts/generateSchema.ts",
+    "generate:live": "nodemon --exec 'ts-node --transpile-only src/scripts/generateSchema.ts' --watch 'src/graphql/modules/**/*.graphql' --ext 'graphql'",
+    "start": "ts-node --transpile-only src/app.ts",
+    "start:live": "nodemon --exec ts-node --transpile-only src/app.ts --watch src --ignore 'node_modules'",
     "parcel:live": "npx parcel watch src/app.ts --no-cache --dist-dir dist",
     "live": "concurrently  -n 'graphql:generate,graphql:server' -c 'bgGreen,bgBlue' 'pnpm generate:live' 'pnpm start:live' --handle-input",
-    "pre:build": "ts-node-esm src/scripts/preBuild.js",
-    "post:build": "ts-node-esm src/scripts/postBuild.js",
-    "build": "pnpm check; pnpm pre:build; pnpm generate; npx parcel build --no-cache; pnpm post:build"
+    "pre:build": "ts-node --transpile-only src/scripts/preBuild.ts",
+    "post:build": "ts-node --transpile-only src/scripts/postBuild.ts",
+    "build": "pnpm check;pnpm pre:build;pnpm generate;npx parcel build --no-cache;pnpm post:build"
   },
   "keywords": [],
   "author": "",
@@ -41,6 +41,7 @@
     "prisma": "^5.8.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.3"
   }
 }

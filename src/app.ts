@@ -1,7 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { createLogger, getLoglevel, setLoglevel } from "./utils/Logger.js";
+import "tsconfig-paths/register";
+
+import { createLogger, getLoglevel, setLoglevel } from "@/utils/Logger";
 
 const logger = createLogger('app');
 
@@ -11,19 +13,19 @@ if (process.env.LOG_LEVEL) {
   logger.info(`Level changed to ${getLoglevel()}`);
 }
 declare global {
-    namespace NodeJS {
-        interface ProcessEnv {
-            NODE_ENV: 'development' | 'production' | 'test';
-            APP_SERVER_PORT: number;
-            LOG_LEVEL: 'info' | 'debug' | 'warn' | 'error';
-        }
+  namespace NodeJS {
+    interface ProcessEnv {
+      NODE_ENV: 'development' | 'production' | 'test';
+      APP_SERVER_PORT: number;
+      LOG_LEVEL: 'info' | 'debug' | 'warn' | 'error';
     }
+  }
 }
 
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone"
 import { readFileSync } from "node:fs";
-import { resolvers } from "./graphql/index.js";
+import { resolvers } from "@/graphql";
 
 const typeDefs = readFileSync('schema.graphql', 'utf-8');
 
@@ -35,11 +37,12 @@ export async function startServer() {
     typeDefs, resolvers
   })
 
-  return await startStandaloneServer(server, { 
-    listen: { port: Number(process.env.APP_SERVER_PORT!) } })
+  return await startStandaloneServer(server, {
+    listen: { port: Number(process.env.APP_SERVER_PORT!) }
+  })
 }
 
-startServer().then(({ url }) => { 
+startServer().then(({ url }) => {
   logger.info(`Server started at ${url}.`)
   logger.info(`Visit ${url}graphql to run queries.`)
 })

@@ -1,5 +1,5 @@
-import { sampleAuthorsData, sampleBooksData } from "../../../data/sample.js";
-import { createLogger } from "../../../utils/Logger.js";
+import { sampleAuthorsData, sampleBooksData } from "@/data/sample";
+import { createLogger } from "@/utils/Logger";
 
 const logger = createLogger('AuthorResolver');
 const resolvers = {
@@ -20,7 +20,7 @@ const resolvers = {
     books: (author: any) => {
       logger.debug(`Fetching books for related author ${author.id}`)
       return author.books.map(
-        (book: any) => sampleBooksData.find((b:any) => b.id === book))
+        (book: any) => sampleBooksData.find((b: any) => b.id === book))
     },
     bookCount: (author: any) => {
       logger.debug(`Calculating book count for author ${author.id}`)
@@ -29,4 +29,4 @@ const resolvers = {
   },
 }
 
-export const authorSchema = {resolvers}
+export const authorSchema = { resolvers }

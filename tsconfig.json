@@ -1,19 +1,34 @@
 {
   "compilerOptions": {
+    "module": "nodenext",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "target": "es2019",
-    "module": "NodeNext",
-    "rootDir": "./src",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "nodenext",
+    "inlineSourceMap": true,
+    "rootDir": "src",
     "baseUrl": "./",
+    "outDir": "dist",
     "paths": {
-      "@src/*": [
+      "@/*": [
         "./src/*"
+      ],
+      "@modules/*": [
+        "./src/graphql/modules/*"
       ]
     },
-    "inlineSourceMap": true,
-    "outDir": "./dist",
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
