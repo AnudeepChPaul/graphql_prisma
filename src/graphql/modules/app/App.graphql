@@ -1,0 +1,29 @@
+
+type Query {
+  healthcheck: Healthcheck!
+}
+
+"""
+Provides healthcheck information about the server and database
+"""
+type Healthcheck {
+  """
+  Provides the current status of the server
+  """
+  serverStatus: String!
+  """
+  Provides the current status of the database
+  """ 
+  dbStatus: String!
+  """
+  Provides the current time in ISO format
+  """
+  timenow: String!
+  """
+  Provides the current node environment
+  """
+  nodeEnv: String
+  """
+  Provides the current environment"""
+  env: String
+}
