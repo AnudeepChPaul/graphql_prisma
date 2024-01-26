@@ -1,7 +1,7 @@
 import { sampleAuthorsData, sampleBooksData } from "@/data/sample";
-import { createLogger } from "@/utils/Logger";
+import { createLoggerByClassName } from "@/utils/Logger";
 
-const logger = createLogger('AuthorResolver');
+const logger = createLoggerByClassName('AuthorResolver');
 const resolvers = {
   Query: {
     authors(root: any, args: any, context: any, info: any) {
@@ -20,7 +20,7 @@ const resolvers = {
     books: (author: any) => {
       logger.debug(`Fetching books for related author ${author.id}`)
       return author.books.map(
-        (book: any) => sampleBooksData.find((b: any) => b.id === book))
+        (bookId: any) => sampleBooksData.find((b: any) => b.id === bookId))
     },
     bookCount: (author: any) => {
       logger.debug(`Calculating book count for author ${author.id}`)

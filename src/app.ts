@@ -3,9 +3,9 @@ dotenv.config();
 
 import "tsconfig-paths/register";
 
-import { createLogger, getLoglevel, setLoglevel } from "@/utils/Logger";
+import { createLoggerByClassName, getLoglevel, setLoglevel } from "@/utils/Logger";
 
-const logger = createLogger('app');
+const logger = createLoggerByClassName('app');
 
 if (process.env.LOG_LEVEL) {
   logger.info(`Setting log level to ${process.env.LOG_LEVEL}.`)
@@ -31,7 +31,7 @@ const typeDefs = readFileSync('schema.graphql', 'utf-8');
 
 logger.info(`Looger initialized. Default log level is ${getLoglevel()}`);
 
-export async function startServer() {
+export async function launchGraphql() {
   logger.info('Starting server');
   const server = new ApolloServer({
     typeDefs, resolvers
@@ -42,7 +42,7 @@ export async function startServer() {
   })
 }
 
-startServer().then(({ url }) => {
+launchGraphql().then(({ url }) => {
   logger.info(`Server started at ${url}.`)
   logger.info(`Visit ${url}graphql to run queries.`)
 })

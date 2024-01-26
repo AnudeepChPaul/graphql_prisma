@@ -1,7 +1,7 @@
 import { sampleAuthorsData, sampleBooksData } from "@/data/sample";
-import { createLogger } from "@/utils/Logger";
+import { createLoggerByClassName } from "@/utils/Logger";
 
-const logger = createLogger('BookResolver');
+const logger = createLoggerByClassName('BookResolver');
 const resolvers = {
   Query: {
     books(root: any, args: any, context: any, info: any) {

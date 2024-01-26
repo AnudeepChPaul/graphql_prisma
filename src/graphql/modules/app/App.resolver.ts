@@ -1,6 +1,6 @@
-import { createLogger } from "@/utils/Logger";
+import { createLoggerByClassName } from "@/utils/Logger";
 
-const logger = createLogger('AppResolver');
+const logger = createLoggerByClassName('AppResolver');
 export const appResolvers = {
   Query: {
     healthcheck() {
