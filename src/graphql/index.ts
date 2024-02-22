@@ -7,6 +7,5 @@ export const resolvers = [
   appResolvers,
   authorSchema.resolvers,
   bookSchema.resolvers,
-  reviewSchema.resolvers
+  reviewSchema.resolvers,
 ];
-
